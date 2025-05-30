@@ -3,9 +3,8 @@ const telaLogin = require("../fixtures/login.json");
 
 describe('Testes na tela de login', () => {
     beforeEach(() => {
-    cy.login()
-    cy.visit('/dashboard/index')
-  })
+    cy.visit('/auth/login')
+  })  
   it('Teste deve fazer login com sucesso', () => {
     cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input').should('be.visible')
       .and('be.enabled')
