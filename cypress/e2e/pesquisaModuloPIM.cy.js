@@ -1,4 +1,4 @@
-describe('Testes na tela de login', () => {
+describe('Pesquisa de módulos', () => {
 
     beforeEach(() => {
     cy.login()
