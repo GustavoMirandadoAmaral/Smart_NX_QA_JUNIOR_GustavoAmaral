@@ -3,5 +3,14 @@
         "primeiroNome": "Gustavo",
         "ultimoNome": "Sobreira",
         "id": "1111111111"
+    },
+    "search": {
+        "id": "1111111111",
+        "primeiroNome": "Gustavo"
+    },
+    "delete":{
+        "primeiroNome": "Gustavo",
+        "ultimoNome": "Sobreira",
+        "id": "1111111111" 
     }
 }
