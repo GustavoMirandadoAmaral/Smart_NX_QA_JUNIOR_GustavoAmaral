@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "devDependencies": {
-    "cypress": "^14.4.0"
+    "@badeball/cypress-cucumber-preprocessor": "^22.0.1",
+    "cypress": "^14.4.0",
+    "esbuild": "^0.25.5"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
