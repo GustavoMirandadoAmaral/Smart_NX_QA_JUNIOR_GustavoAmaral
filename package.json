@@ -1,17 +1,16 @@
 {
-  "name": "projetosmart",
+  "name": "smart",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {
-    "@badeball/cypress-cucumber-preprocessor": "^22.0.1",
-    "cypress": "^14.4.0",
-    "esbuild": "^0.25.5"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "cypress": "^12.17.2",
+    "@badeball/cypress-cucumber-preprocessor": "^22.0.1",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.5"
+  }
 }

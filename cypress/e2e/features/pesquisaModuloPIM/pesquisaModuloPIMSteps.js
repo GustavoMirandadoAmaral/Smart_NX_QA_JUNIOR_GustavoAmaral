@@ -1,7 +1,7 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
 Given('que o usuário está logado na plataforma', () => {
-  cy.login();
+  cy.login()
   cy.visit('/dashboard/index');
 });
 
@@ -20,7 +20,7 @@ When('clica no módulo PIM', () => {
 
 Then('deve ser redirecionado para a página do módulo PIM', () => {
   cy.location('pathname', { timeout: 20000 })
-    .should('not.be.equal', '/dashboard/index');
+    .should('contain', '/pim/viewEmployeeList'); // ✔️ URL correta do módulo PIM
 
   cy.get('.oxd-topbar-header-title')
     .should('contain', 'PIM');

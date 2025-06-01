@@ -1,5 +1,5 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-const dadosLogin = require("../../fixtures/login.json");
+const dadosLogin = require("../../../fixtures/login.json");
 
 Given('que o usuário está na tela de login', () => {
   cy.visit('/auth/login');

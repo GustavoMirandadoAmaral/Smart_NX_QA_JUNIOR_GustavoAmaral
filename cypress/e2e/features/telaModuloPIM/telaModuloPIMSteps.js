@@ -1,15 +1,19 @@
-import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-const cadastropim = require("../fixtures/cadastroUsuario.json");
+import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor/steps';
+const cadastropim = require("../../../fixtures/cadastroUsuario.json");
+const dadosLogin = require("../../../fixtures/login.json");
 
 Given('que o usuário está na tela de cadastro do PIM', () => {
-  cy.login();
+  cy.login()
   cy.visit('/pim/viewEmployeeList');
-  cy.get('.orangehrm-header-container > .oxd-button').should('be.visible').and('be.enabled').click();
+
+  cy.get('.orangehrm-header-container > .oxd-button')
+    .should('be.visible')
+    .and('be.enabled')
+    .click();
 });
 
 When('clica no botão Save sem preencher os campos obrigatórios', () => {
   cy.get('.oxd-button--secondary')
-    .as('clickSave')
     .should('be.visible')
     .and('be.enabled')
     .click();
@@ -17,7 +21,7 @@ When('clica no botão Save sem preencher os campos obrigatórios', () => {
 
 Then('o sistema deve exibir uma mensagem de campo obrigatório', () => {
   cy.get('.orangehrm-card-container')
-    .should('not.be.disabled')
+    .should('be.visible')
     .and('contain', 'Required');
 });
 
@@ -41,7 +45,6 @@ When('preenche os campos de primeiro nome, último nome e ID', () => {
 
 When('clica no botão Save', () => {
   cy.get('.oxd-button--secondary')
-    .as('clickSave')
     .should('be.visible')
     .and('be.enabled')
     .click();
@@ -49,12 +52,30 @@ When('clica no botão Save', () => {
 
 Then('o sistema deve exibir uma mensagem de sucesso no cadastro', () => {
   cy.get('.oxd-toast')
-    .should('not.be.disabled')
+    .should('be.visible')
     .and('contain', 'Successfully');
 });
 
 Given('que o usuário está na tela PIM', () => {
-  cy.login();
+  cy.visit('/auth/login');
+
+  cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input')
+    .should('be.visible')
+    .and('be.enabled')
+    .type(dadosLogin.loginValido.username);
+
+  cy.get(':nth-child(3) > .oxd-input-group > :nth-child(2) > .oxd-input')
+    .should('be.visible')
+    .and('be.enabled')
+    .type(dadosLogin.loginValido.senha);
+
+  cy.get('.oxd-button')
+    .should('be.visible')
+    .and('be.enabled')
+    .click();
+
+  cy.url().should('include', '/dashboard/index');
+
   cy.visit('/pim/viewEmployeeList');
 });
 
@@ -65,7 +86,6 @@ When('pesquisa o usuário pelo nome', () => {
     .type(cadastropim.search.primeiroNome);
 
   cy.get('.oxd-form-actions > .oxd-button--secondary')
-    .as('Search')
     .should('be.visible')
     .and('be.enabled')
     .click();
@@ -73,7 +93,7 @@ When('pesquisa o usuário pelo nome', () => {
 
 Then('o sistema deve exibir os dados do usuário na listagem', () => {
   cy.get('.oxd-table-card > .oxd-table-row')
-    .should('not.be.disabled')
+    .should('be.visible')
     .and('contain', cadastropim.delete.id)
     .and('contain', cadastropim.delete.primeiroNome)
     .and('contain', cadastropim.delete.ultimoNome);
@@ -93,7 +113,7 @@ When('pesquisa o usuário pelo ID', () => {
   cy.wait(1000);
 
   cy.get('.oxd-table-card > .oxd-table-row')
-    .should('not.be.disabled')
+    .should('be.visible')
     .and('contain', cadastropim.delete.id)
     .and('contain', cadastropim.delete.primeiroNome)
     .and('contain', cadastropim.delete.ultimoNome);
@@ -114,6 +134,6 @@ When('realiza a exclusão do usuário', () => {
 
 Then('o sistema deve exibir uma mensagem de sucesso na exclusão', () => {
   cy.get('.oxd-toast')
-    .should('not.be.disabled')
+    .should('be.visible')
     .and('contain', 'Successfully');
 });
